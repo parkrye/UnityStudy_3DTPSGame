@@ -16,7 +16,7 @@
                 },
                 {
                     "name": "Fire",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "c98396df-fd89-4f0b-9a36-5be3c75046c5",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -34,8 +34,17 @@
                 },
                 {
                     "name": "Crawl",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "ab98b9c0-0dca-4bc3-b8d8-67d6d051bbe1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Run",
+                    "type": "PassThrough",
+                    "id": "c7a13cc5-cffc-4f3b-8368-1af30e106182",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -54,6 +63,15 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "5a93bb73-6d9d-41a7-8572-582282805f6f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Zoom",
+                    "type": "PassThrough",
+                    "id": "64d6c549-3de9-419f-8507-6d273d567d25",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -188,6 +206,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04b76bc3-c912-4bb1-be0d-f2d235914721",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d33feb85-cb12-4204-8101-d67c97261581",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

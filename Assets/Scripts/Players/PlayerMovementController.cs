@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,22 +6,16 @@ public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] CharacterController characterController;
     [SerializeField] Animator animator;
+    [SerializeField] Transform lookFromTransform;
+    [SerializeField] CapsuleCollider hitCapsule;
 
-    enum MoveState { Crawl, Walk, Run }
-    [SerializeField] MoveState moveState;
     [SerializeField] Vector2 moveDir;
     [SerializeField] float nowSpeed, crawlSpeed, walkSpeed, runSpeed, ySpeed, jumpSpeed;
 
-    void Awake()
-    {
-        characterController = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
-    }
-
     void Start()
     {
-        moveState = MoveState.Walk;
         nowSpeed = walkSpeed;
+        animator.SetFloat("Speed", 3f);
     }
 
     void FixedUpdate()
@@ -32,6 +27,15 @@ public class PlayerMovementController : MonoBehaviour
     void XZMove()
     {
         characterController.Move((transform.forward * moveDir.y + transform.right * moveDir.x) * nowSpeed * Time.deltaTime);
+
+        if(animator.GetFloat("Speed") < nowSpeed)
+        {
+            animator.SetFloat("Speed", animator.GetFloat("Speed") + 2f * Time.deltaTime);
+        }
+        else if (animator.GetFloat("Speed") > nowSpeed)
+        {
+            animator.SetFloat("Speed", animator.GetFloat("Speed") - 2f * Time.deltaTime);
+        }
     }
 
     void YMove()
@@ -47,6 +51,7 @@ public class PlayerMovementController : MonoBehaviour
     void OnMove(InputValue inputValue)
     {
         moveDir = inputValue.Get<Vector2>();
+
         animator.SetFloat("Foward", moveDir.y);
         animator.SetFloat("Sideward", moveDir.x);
         if (moveDir == Vector2.zero)
@@ -59,38 +64,49 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (GroundCheck())
         {
-            animator.SetTrigger("Jump");
             ySpeed = jumpSpeed;
+
+            animator.SetTrigger("Jump");
         }
     }
 
-    void OnCrawl()
+    void OnCrawl(InputValue inputValue)
     {
-        if(moveState == MoveState.Crawl)
+        if (inputValue.isPressed)
         {
-            animator.SetBool("Crawl", false);
-            moveState = MoveState.Walk;
+            StopAllCoroutines();
+            StartCoroutine(Sit(1f));
+
+            nowSpeed = crawlSpeed;
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(Sit(1.5f));
+
             nowSpeed = walkSpeed;
         }
-        else if(moveState == MoveState.Walk)
+    }
+
+    void OnRun(InputValue inputValue)
+    {
+        StopAllCoroutines();
+        StartCoroutine(Sit(1.5f));
+
+        if (inputValue.isPressed)
         {
-            animator.SetBool("Run", true);
-            moveState = MoveState.Run;
             nowSpeed = runSpeed;
         }
         else
         {
-            animator.SetBool("Run", false);
-            animator.SetBool("Crawl", true);
-            moveState = MoveState.Crawl;
-            nowSpeed = crawlSpeed;
+            nowSpeed = walkSpeed;
         }
     }
 
     bool GroundCheck()
     {
         RaycastHit hit;
-        if(Physics.SphereCast(transform.position + transform.up, 0.3f, -transform.up, out hit, 0.8f, LayerMask.GetMask("Ground")))
+        if(Physics.SphereCast(transform.position + transform.up, 0.3f, -transform.up, out hit, 1f, LayerMask.GetMask("Ground")))
         {
             animator.SetBool("Ground", true);
         }
@@ -99,5 +115,31 @@ public class PlayerMovementController : MonoBehaviour
             animator.SetBool("Ground", false);
         }
         return animator.GetBool("Ground");
+    }
+
+    IEnumerator Sit(float dest)
+    {
+        if (lookFromTransform.localPosition.y > dest)
+        {
+            while (lookFromTransform.localPosition.y > dest)
+            {
+                lookFromTransform.Translate(-Vector3.up * 0.01f);
+                hitCapsule.height -= 0.012f;
+                hitCapsule.center += new Vector3(0f, 0.012f, 0.004f);
+
+                yield return new WaitForSeconds(0.005f);
+            }
+        }
+        else
+        {
+            while (lookFromTransform.localPosition.y < dest)
+            {
+                lookFromTransform.Translate(Vector3.up * 0.01f);
+                hitCapsule.height += 0.03f;
+                hitCapsule.center -= new Vector3(0f, 0.012f, 0.004f);
+
+                yield return new WaitForSeconds(0.005f);
+            }
+        }
     }
 }

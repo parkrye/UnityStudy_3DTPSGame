@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,7 @@ public class PlayerCameraController : MonoBehaviour
     [SerializeField] CameraState state;
 
     [SerializeField] CinemachineVirtualCamera tpsCam, fpsCam;
-    [SerializeField] Transform lookAtTarget, lookFromTarget, modelTransform;
+    [SerializeField] Transform lookAtTarget, lookFromTarget, modelTransform, aimTargetTransform;
     [SerializeField] GameObject model;
 
     [SerializeField] [Range(10, 60)] float sensitivity;
@@ -24,15 +25,18 @@ public class PlayerCameraController : MonoBehaviour
     {
         Rotate();
         Look();
+
+        if (state == CameraState.TPS)
+        {
+            modelTransform.LookAt(new Vector3(lookAtTarget.position.x, modelTransform.position.y, lookAtTarget.position.z));
+        }
+
+        aimTargetTransform.position = lookAtTarget.position;
     }
 
     void Rotate()
     {
         transform.localRotation = Quaternion.Euler(0, yRotation, 0);
-        if (state == CameraState.TPS)
-        {
-            modelTransform.LookAt(new Vector3(lookAtTarget.position.x, modelTransform.position.y, lookAtTarget.position.z));
-        }
     }
 
     void Look()
@@ -63,6 +67,44 @@ public class PlayerCameraController : MonoBehaviour
             model.SetActive(true);
             tpsCam.Priority = 1;
             fpsCam.Priority = 0;
+        }
+    }
+
+    void OnZoom(InputValue inputValue)
+    {
+        if (inputValue.isPressed)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Zoom(15f));
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(Zoom(60f));
+        }
+    }
+
+    IEnumerator Zoom(float dest)
+    {
+        if(fpsCam.m_Lens.FieldOfView > dest)
+        {
+            while (fpsCam.m_Lens.FieldOfView > dest)
+            {
+                fpsCam.m_Lens.FieldOfView -= 1f;
+                tpsCam.m_Lens.FieldOfView -= 1f;
+
+                yield return new WaitForSeconds(0.005f);
+            }
+        }
+        else
+        {
+            while (fpsCam.m_Lens.FieldOfView < dest)
+            {
+                fpsCam.m_Lens.FieldOfView += 1f;
+                tpsCam.m_Lens.FieldOfView += 1f;
+
+                yield return new WaitForSeconds(0.005f);
+            }
         }
     }
 }
