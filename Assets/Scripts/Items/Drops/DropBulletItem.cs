@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class DropBulletItem : DropItem
 {
-    void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerDataManager>().Bullets += 30;
+            other.GetComponent<PlayerDataManager>().Bullets += 100;
+            dropper?.DropDestroyed(gameObject);
+            return;
         }
+        base.OnTriggerEnter(other);
     }
 }

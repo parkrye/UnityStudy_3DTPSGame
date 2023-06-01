@@ -2,28 +2,29 @@ using UnityEngine;
 
 public class DropSkinItem : DropItem
 {
-    void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
             PlayerSkinManager skinManager = other.GetComponent<PlayerSkinManager>();
             if (skinManager.SetModel(name))
             {
-                Destroy(gameObject);
+                dropper?.DropDestroyed(gameObject);
                 return;
             }
 
             if (skinManager.SetHair(name))
             {
-                Destroy(gameObject);
+                dropper?.DropDestroyed(gameObject);
                 return;
             }
 
             if (skinManager.SetPack(name))
             {
-                Destroy(gameObject);
+                dropper?.DropDestroyed(gameObject);
                 return;
             }
         }
+        base.OnTriggerEnter(other);
     }
 }

@@ -7,11 +7,9 @@ public class PlayerCameraController : MonoBehaviour
 {
     enum CameraState { TPS, FPS }
     [SerializeField] CameraState state;
-
     [SerializeField] CinemachineVirtualCamera tpsCam, fpsCam;
     [SerializeField] Transform lookAtTarget, lookFromTarget, modelTransform, aimTargetTransform;
     [SerializeField] GameObject model;
-
     [SerializeField] [Range(10, 60)] float sensitivity;
     [SerializeField] float xRotation, yRotation;
     [SerializeField] Vector2 lookDelta;
@@ -27,9 +25,7 @@ public class PlayerCameraController : MonoBehaviour
         Look();
 
         if (state == CameraState.TPS)
-        {
             modelTransform.LookAt(new Vector3(lookAtTarget.position.x, modelTransform.position.y, lookAtTarget.position.z));
-        }
 
         aimTargetTransform.position = lookAtTarget.position;
     }

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4075511670602576}
   - component: {fileID: 33862760974230474}
   - component: {fileID: 23977690333640826}
-  - component: {fileID: 64474382440327326}
   - component: {fileID: 7203392556645592067}
+  - component: {fileID: -3371106117181632335}
+  - component: {fileID: -3377550623425709105}
   m_Layer: 0
   m_Name: SM_Chr_Attach_Hat_Football_01
   m_TagString: Untagged
@@ -85,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64474382440327326
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267928347703580}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43485276710271432, guid: 5dcc1050bf570e54780fba1148e46a16, type: 2}
 --- !u!114 &7203392556645592067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +98,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99a6187d8075d146a8a8e1d1adc2ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drop: 0
+--- !u!65 &-3371106117181632335
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267928347703580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31328946, y: 0.35156384, z: 0.37477136}
+  m_Center: {x: 0.00000009685755, y: 0.09464426, z: 0.025047012}
+--- !u!54 &-3377550623425709105
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267928347703580}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

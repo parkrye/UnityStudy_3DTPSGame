@@ -3,5 +3,5 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public int damage;
-    public float cooldown;
+    public float cooldown, range;
 }

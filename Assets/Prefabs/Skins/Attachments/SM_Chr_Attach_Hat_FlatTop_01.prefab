@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4161493931012396}
   - component: {fileID: 33583033518909634}
   - component: {fileID: 23657903225989890}
-  - component: {fileID: 64733880211133354}
   - component: {fileID: -5315947583233406237}
+  - component: {fileID: -4401829063954413166}
+  - component: {fileID: 642034372851117437}
   m_Layer: 0
   m_Name: SM_Chr_Attach_Hat_FlatTop_01
   m_TagString: Untagged
@@ -85,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64733880211133354
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354353214663802}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43883738544415302, guid: e1d866abba0e3704d9f8cb75e03c80e5, type: 2}
 --- !u!114 &-5315947583233406237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +98,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99a6187d8075d146a8a8e1d1adc2ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drop: 0
+--- !u!65 &-4401829063954413166
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354353214663802}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3927616, y: 0.19057482, z: 0.38130265}
+  m_Center: {x: 0.0011081174, y: 0.16790342, z: -0.0066661015}
+--- !u!54 &642034372851117437
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354353214663802}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

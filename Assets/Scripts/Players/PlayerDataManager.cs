@@ -5,7 +5,6 @@ public class PlayerDataManager : MonoBehaviour
 {
     [SerializeField] int hp, maxHP;
     [SerializeField] int bullets;
-
     [SerializeField] UnityEvent<int> hpEvent, bulletEvent;
 
     public int HP { get { return hp; } set { hp = value; if (hp > maxHP) hp = maxHP; hpEvent?.Invoke(hp); } }

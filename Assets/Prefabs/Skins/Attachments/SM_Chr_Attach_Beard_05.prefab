@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4562248472230090}
   - component: {fileID: 33009965210749808}
   - component: {fileID: 23010301545727514}
-  - component: {fileID: 64748372791590842}
   - component: {fileID: 1440052348309044253}
+  - component: {fileID: -4705787849481913306}
+  - component: {fileID: -2129636682453985671}
   m_Layer: 0
   m_Name: SM_Chr_Attach_Beard_05
   m_TagString: Untagged
@@ -85,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64748372791590842
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787760780986768}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43326935917966558, guid: 408afa9cee015254f8cc42350ed050e7, type: 2}
 --- !u!114 &1440052348309044253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +98,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99a6187d8075d146a8a8e1d1adc2ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drop: 0
+--- !u!65 &-4705787849481913306
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787760780986768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21577856, y: 0.13133994, z: 0.12709838}
+  m_Center: {x: 0, y: -0.021435885, z: 0.08746952}
+--- !u!54 &-2129636682453985671
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787760780986768}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

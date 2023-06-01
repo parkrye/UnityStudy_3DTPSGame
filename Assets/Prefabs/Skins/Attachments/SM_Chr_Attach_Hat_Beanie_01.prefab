@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4006499569229972}
   - component: {fileID: 33315424712933698}
   - component: {fileID: 23333461736901432}
-  - component: {fileID: 64109609182689952}
   - component: {fileID: -6270238997593163246}
+  - component: {fileID: 589249428767694514}
+  - component: {fileID: -3700390537575304189}
   m_Layer: 0
   m_Name: SM_Chr_Attach_Hat_Beanie_01
   m_TagString: Untagged
@@ -85,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64109609182689952
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324470782807942}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43371709456415146, guid: edfc4fd006a38ca40a0575a7737faf77, type: 2}
 --- !u!114 &-6270238997593163246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +98,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99a6187d8075d146a8a8e1d1adc2ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drop: 0
+--- !u!65 &589249428767694514
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324470782807942}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31305423, y: 0.21386002, z: 0.31386107}
+  m_Center: {x: 0.0000012367964, y: 0.16254133, z: -0.005177006}
+--- !u!54 &-3700390537575304189
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324470782807942}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
