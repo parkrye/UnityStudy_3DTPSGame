@@ -44,6 +44,18 @@ public class ItemDropper : MonoBehaviour
         {
             if(dropCount < dropMax)
             {
+                if(itemPool.Count == 0)
+                {
+                    for (int i = 0; i < dropItems.Length; i++)
+                    {
+                        GameObject add = Instantiate(itemPrefabs[i], Return_RandomPosition(), Quaternion.identity);
+                        add.name = itemPrefabs[i].name;
+                        add.transform.parent = transform;
+                        add.GetComponent<DropItem>().dropper = this;
+                        itemPool.Add(add);
+                    }
+                }
+
                 int randNum = Random.Range(0, itemPool.Count);
                 GameObject drop = itemPool[randNum];
                 itemPool.Remove(drop);

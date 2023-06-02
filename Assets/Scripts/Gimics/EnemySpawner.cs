@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     {
         enemies = new Stack<GameObject>();
         spawntransforms = GetComponentsInChildren<Transform>();
-        for(int i = 0; i < 100; i++)
+        for(int i = 0; i < 10; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             enemy.SetActive(false);
@@ -36,6 +36,15 @@ public class EnemySpawner : MonoBehaviour
         {
             if(enemyCount < enemyMax)
             {
+                if (enemies.Count == 0)
+                {
+                    GameObject add = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+                    add.SetActive(false);
+                    add.GetComponent<Enemy>().spawner = this;
+                    add.transform.parent = transform;
+                    enemies.Push(add);
+                }
+
                 GameObject enemy = enemies.Pop();
                 enemy.transform.position = spawntransforms[Random.Range(0, spawntransforms.Length)].position;
                 enemy.GetComponent<Enemy>().Work(player);
